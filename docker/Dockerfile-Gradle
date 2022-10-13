@@ -1,0 +1,13 @@
+FROM gradle:7.5.1-jdk17-alpine AS build
+
+# Install graphviz + fonts for testing
+RUN apk add graphviz
+RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto font-noto-cjk ttf-font-awesome font-noto-extra
+
+# Copy the whole source code into /home/gradle/src
+COPY --chown=gradle:gradle ../backend /home/gradle/src
+WORKDIR /home/gradle/src
+
+# Gradle Build + Tests with no-daemon
+RUN gradle build --no-daemon
+

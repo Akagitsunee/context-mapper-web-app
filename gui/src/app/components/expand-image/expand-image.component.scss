@@ -1,0 +1,28 @@
+.modal {
+  display: block;
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  bottom: auto;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+  background-color: #ffff;
+}
+
+.modal-body {
+  width: 90vw; /* 90% of viewport vidth */
+  height: 50.625vw; /* ratio = 9/16 * 90 = 50.625 */
+  max-height: 90vh;
+  max-width: 160vh; /* 16/9 * 90 = 160 */
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}

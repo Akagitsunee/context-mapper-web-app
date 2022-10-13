@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-Spring
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+  gui:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-Angular
+    ports:
+      - "80:80"
+  test:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-Gradle
+    ports:
+      - "8080:8080"

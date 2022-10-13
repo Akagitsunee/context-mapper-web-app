@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="editor">
+    <div class="field-header">
+      <a
+        id="reference"
+        href="https://contextmapper.org/docs/language-reference/"
+        target="_blank"
+        class="btn btn-default"
+        >Reference</a
+      >
+      <select
+        class="form-control"
+        class="select"
+        [(ngModel)]="selectedGenerator"
+      >
+        <option *ngFor="let g of generators">
+          {{ g.name }}
+        </option>
+      </select>
+      <button class="btn btn-default" (click)="generateDiagram()">
+        Generate
+      </button>
+    </div>
+    <div class="code">
+      <div class="app-ace-editor" #editor></div>
+    </div>
+  </div>
+
+  <div class="generate">
+    <div class="field-header">
+      <select
+        class="form-control"
+        class="select"
+        [(ngModel)]="selectedFileType"
+      >
+        <option *ngFor="let ft of fileTypes">
+          {{ ft }}
+        </option>
+      </select>
+      <button class="btn btn-default" (click)="export()">Export</button>
+    </div>
+    <div class="imageviewer" (click)="expandImage()">
+      <img alt="diagram" [src]="image" />
+    </div>
+  </div>
+</div>
+
+<app-expand-image
+  *ngIf="expand"
+  (closeEvent)="expandImage()"
+  [image]="image"
+></app-expand-image>

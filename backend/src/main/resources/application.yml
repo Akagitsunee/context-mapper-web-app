@@ -1,0 +1,5 @@
+contextmapper:
+  tmpDir:
+springdoc:
+  packagesToScan: org.contextmapper.web
+  pathsToMatch: /**
