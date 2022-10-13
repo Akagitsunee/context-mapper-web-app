@@ -4,7 +4,6 @@
 ## System Requirements
 To use the ContextMapper Web App you need the following tools:
 * [Docker](https://www.docker.com/) 
-  * Ensure that it comes with docker-compose
 
 ## Getting Started
 1. Execute start.bat or start.sh depending on the system
