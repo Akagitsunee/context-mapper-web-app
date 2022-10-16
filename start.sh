@@ -1,5 +1,5 @@
 if [[ $# -eq 0 ]]; then
-    docker-compose --project-directory docker up web -d --build gui 
+    docker-compose --project-directory docker up -d --build web gui 
 fi
 
 if [[ $1 = "test" ]]; then
@@ -7,9 +7,9 @@ if [[ $1 = "test" ]]; then
 fi
 
 if [[ $1 = "web"  ]]; then
-    docker-compose --project-directory docker up  -d --build web
+    docker-compose --project-directory docker up -d --build web
 fi
 
 if [[ $1 = "gui"  ]]; then
-    docker-compose --project-directory docker up  -d --build gui
+    docker-compose --project-directory docker up -d --build gui
 fi
