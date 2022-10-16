@@ -14,8 +14,8 @@ import java.util.Objects;
 @Service
 public class ExportService {
 
-    private final String DEFAULT_GEN_DIR = "./src-gen";
-    File srcGenDir = new File(DEFAULT_GEN_DIR);
+    private final String DEFAULT_GEN_DIR_PATH = "./src-gen";
+    private final File SRC_GEN_DIR = new File(DEFAULT_GEN_DIR_PATH);
 
     public Resource exportAsResource(String extension) throws IOException {
         File file = getFileByExtension(extension);
@@ -28,7 +28,7 @@ public class ExportService {
     }
 
     private File getFileByExtension(String extension) throws IOException {
-        List<File> files = Arrays.stream(Objects.requireNonNull(srcGenDir.listFiles()))
+        List<File> files = Arrays.stream(Objects.requireNonNull(SRC_GEN_DIR.listFiles()))
                 .filter(f -> f.getName()
                         .contains(extension))
                 .toList();

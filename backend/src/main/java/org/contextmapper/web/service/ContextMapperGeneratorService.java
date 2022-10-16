@@ -21,10 +21,10 @@ import java.util.Objects;
 @Service
 public class ContextMapperGeneratorService implements  GeneratorService {
     private final StandaloneContextMapperAPI contextMapper;
-    private final String DEFAULT_GEN_DIR = "./src-gen";
-    private final String TEMP_DIR = "./tmp/GraphvizJava";
-    private final File srcGenDir = new File(DEFAULT_GEN_DIR);
-    private final File tmpDir = new File(TEMP_DIR);
+    private final String DEFAULT_GEN_DIR_PATH = "./src-gen";
+    private final String TEMP_DIR_PATH = "./tmp/GraphvizJava";
+    private final File SRC_GEN_DIR = new File(DEFAULT_GEN_DIR_PATH);
+    private final File TEMP_DIR = new File(TEMP_DIR_PATH);
 
     public ContextMapperGeneratorService() {
         this.contextMapper = ContextMapperStandaloneSetup.getStandaloneAPI();
@@ -56,7 +56,7 @@ public class ContextMapperGeneratorService implements  GeneratorService {
         }
     }
 
-    private static Path getPath(String content) throws IOException {
+    private Path getPath(String content) throws IOException {
         String prefix = "code";
         String suffix = ".cml";
         Path tempPath = Files.createTempFile(prefix, suffix);
@@ -65,12 +65,12 @@ public class ContextMapperGeneratorService implements  GeneratorService {
     }
 
     private void cleanOldData() throws IOException {
-        FileUtils.cleanDirectory(srcGenDir);
-        FileUtils.cleanDirectory(tmpDir);
+        FileUtils.cleanDirectory(SRC_GEN_DIR);
+        FileUtils.cleanDirectory(TEMP_DIR);
     }
 
     private List<String> getListOfPossibleExtensions() {
-        return Arrays.stream(Objects.requireNonNull(srcGenDir.listFiles()))
+        return Arrays.stream(Objects.requireNonNull(SRC_GEN_DIR.listFiles()))
                 .map(file -> FilenameUtils.getExtension(file.getName()))
                 .toList();
     }
