@@ -1,6 +1,7 @@
 package org.contextmapper.web.api;
 
 import org.contextmapper.dsl.cml.exception.ResourceIsNoCMLModelException;
+import org.contextmapper.dsl.generator.exception.NoContextMapDefinedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class RestResponseEntityExceptionHandler
 
 
     @ExceptionHandler(value
-            = {ResourceIsNoCMLModelException.class})
+            = {ResourceIsNoCMLModelException.class, NoContextMapDefinedException.class})
     protected ResponseEntity<Object> handleBadRequest(
             RuntimeException ex, WebRequest request) {
         String bodyOfResponse = "The given resource does not contain a CML model.";

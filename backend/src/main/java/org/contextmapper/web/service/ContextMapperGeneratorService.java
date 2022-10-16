@@ -5,6 +5,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.contextmapper.dsl.cml.CMLResource;
 import org.contextmapper.dsl.cml.exception.ResourceIsNoCMLModelException;
 import org.contextmapper.dsl.generator.ContextMapGenerator;
+import org.contextmapper.dsl.generator.exception.NoContextMapDefinedException;
 import org.contextmapper.dsl.standalone.ContextMapperStandaloneSetup;
 import org.contextmapper.dsl.standalone.StandaloneContextMapperAPI;
 import org.contextmapper.web.models.GenerateResponse;
@@ -34,13 +35,17 @@ public class ContextMapperGeneratorService implements  GeneratorService {
     public GenerateResponse generate(String content, GeneratorType type) {
         try {
             // Clean tmp and src-gen dir
-            cleanOldData();
+            Path tempPath = getPath(content);
+            CMLResource resource = contextMapper.loadCML(tempPath.toFile());
+
+            if (resource.getContextMappingModel().getMap() == null) {
+                throw new NoContextMapDefinedException();
+            }
 
             // Create the generator
             ContextMapGenerator generator = new ContextMapGenerator();
 
-            Path tempPath = getPath(content);
-            CMLResource resource = contextMapper.loadCML(tempPath.toFile());
+            cleanOldData();
 
             // Generate the diagrams into 'src-gen'
             contextMapper.callGenerator(resource, generator);
