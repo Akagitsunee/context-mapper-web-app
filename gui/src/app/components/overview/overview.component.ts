@@ -47,7 +47,7 @@ export class OverviewComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.generateDiagram();
-    ace.config.set('fontSize', '12px');
+    ace.config.set('fontSize', '18px');
 
     const aceEditor = ace.edit(this.editor.nativeElement);
     aceEditor.session.setValue(this.content);
@@ -57,6 +57,7 @@ export class OverviewComponent implements AfterViewInit {
 
     aceEditor.on('change', () => {
       this.content = aceEditor.getValue();
+      this.generateDiagram();
     });
   }
 
@@ -77,10 +78,6 @@ export class OverviewComponent implements AfterViewInit {
         this.image = this.sanitizer.bypassSecurityTrustUrl(unsafeImageUrl);
       });
     });
-  }
-
-  handleChange($event: Event): void {
-    console.log('ngModelChange', $event);
   }
 
   private escapeString(str: string) {

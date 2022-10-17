@@ -1,18 +1,18 @@
 package org.contextmapper.web.models;
 
-import java.util.List;
+import java.util.Set;
 
 public class GenerateResponse {
-    private List<String> possibleExportFormats;
+    private Set<String> possibleExportFormats;
 
     public GenerateResponse() {
     }
 
-    public GenerateResponse(List<String> possibleExportFormats) {
+    public GenerateResponse(Set<String> possibleExportFormats) {
         this.possibleExportFormats = possibleExportFormats;
     }
 
-    public List<String> getPossibleExportFormats() {
+    public Set<String> getPossibleExportFormats() {
         return possibleExportFormats;
     }
 }

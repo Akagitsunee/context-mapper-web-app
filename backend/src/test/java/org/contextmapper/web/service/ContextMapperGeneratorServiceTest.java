@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -32,7 +32,7 @@ public class ContextMapperGeneratorServiceTest {
     public void generateContextMapperPNG_200() throws IOException {
         GenerateResponse res = service.generate(TestUtils.cmlAsString(), GeneratorType.CONTEXTMAP);
 
-        List<String> export = res.getPossibleExportFormats();
+        Set<String> export = res.getPossibleExportFormats();
         assertTrue(export.contains("gv"));
         assertTrue(export.contains("png"));
         assertTrue(export.contains("svg"));

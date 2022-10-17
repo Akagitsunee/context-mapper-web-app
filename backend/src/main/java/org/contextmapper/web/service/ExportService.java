@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +32,8 @@ public class ExportService {
         List<File> files = Arrays.stream(Objects.requireNonNull(SRC_GEN_DIR.listFiles()))
                 .filter(f -> f.getName()
                         .contains(extension))
-                .toList();
+                .max(Comparator.comparingLong(File::lastModified))
+                .stream().toList();
 
         if (files.size() <= 0) {
             throw new FileNotFoundException("No such file existing!");

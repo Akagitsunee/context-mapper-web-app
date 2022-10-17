@@ -16,11 +16,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
-public class ContextMapperGeneratorService implements  GeneratorService {
+public class ContextMapperGeneratorService implements GeneratorService {
     private final StandaloneContextMapperAPI contextMapper;
     private final String DEFAULT_GEN_DIR_PATH = "./src-gen";
     private final String TEMP_DIR_PATH = "./tmp/GraphvizJava";
@@ -45,13 +48,11 @@ public class ContextMapperGeneratorService implements  GeneratorService {
             // Create the generator
             ContextMapGenerator generator = new ContextMapGenerator();
 
-            cleanOldData();
-
             // Generate the diagrams into 'src-gen'
             contextMapper.callGenerator(resource, generator);
 
-            // Delete file after generation
-            Files.delete(tempPath);
+            // Delete temp files and old files after generation
+            cleanOldData(tempPath);
 
             return new GenerateResponse(getListOfPossibleExtensions());
         } catch (IOException e) {
@@ -59,6 +60,7 @@ public class ContextMapperGeneratorService implements  GeneratorService {
         } catch (ResourceIsNoCMLModelException re) {
             throw new ResourceIsNoCMLModelException();
         }
+
     }
 
     private Path getPath(String content) throws IOException {
@@ -69,14 +71,28 @@ public class ContextMapperGeneratorService implements  GeneratorService {
         return tempPath;
     }
 
-    private void cleanOldData() throws IOException {
-        FileUtils.cleanDirectory(SRC_GEN_DIR);
+    private void cleanOldData(Path tempPath) throws IOException {
+        // Delete files older than the newest 10
+        // 10 as Buffer if the server isn't fast enough for now
+        List<File> fileList = List.of(Objects.requireNonNull(SRC_GEN_DIR.listFiles()));
+        Arrays.stream(Objects.requireNonNull(SRC_GEN_DIR.listFiles()))
+                .sorted(Comparator.comparingLong(File::lastModified).reversed())
+                .skip(10)
+                .forEach(f -> {
+                    try {
+                        Files.deleteIfExists(f.toPath());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
         FileUtils.cleanDirectory(TEMP_DIR);
+        Files.delete(tempPath);
     }
 
-    private List<String> getListOfPossibleExtensions() {
+    private Set<String> getListOfPossibleExtensions() {
         return Arrays.stream(Objects.requireNonNull(SRC_GEN_DIR.listFiles()))
                 .map(file -> FilenameUtils.getExtension(file.getName()))
-                .toList();
+                .collect(Collectors.toSet());
     }
 }

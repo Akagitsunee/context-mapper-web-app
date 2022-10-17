@@ -92,3 +92,9 @@ textarea {
 .ace_content {
   width: auto !important;
 }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 95%;
+  }
+}
