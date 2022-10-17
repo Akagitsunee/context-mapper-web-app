@@ -25,6 +25,16 @@ public class TestUtils {
         srcGen.mkdirs();
     }
 
+    public static void createTempData() throws IOException {
+        String resourceName = "model.png";
+        ClassLoader classLoader = TestUtils.class.getClassLoader();
+
+        File file = new File(Objects.requireNonNull(classLoader.getResource(resourceName)).getFile());
+        File srcGen = new File(DEFAULT_GEN_DIR + "/" + resourceName);
+
+        FileUtils.copyFile(file,srcGen);
+    }
+
     public static void cleanOldData() throws IOException {
         FileUtils.cleanDirectory(srcGenDir);
         FileUtils.cleanDirectory(tmpDirGraphviz);

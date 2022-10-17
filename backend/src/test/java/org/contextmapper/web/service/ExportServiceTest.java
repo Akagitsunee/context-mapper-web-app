@@ -30,6 +30,7 @@ public class ExportServiceTest {
 
     @Test
     public void exportAsPng_200() throws IOException {
+        TestUtils.createTempData();
         String extension = "png";
 
         Resource png = exportService.exportAsResource(extension);
