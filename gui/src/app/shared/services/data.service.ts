@@ -19,7 +19,7 @@ const httpOptions = {
 export class DataService {
   private BASE_URL = 'http://localhost:8080';
   private GENERATE_URL = this.BASE_URL + '/generate';
-  private EXPORT_URL = 'http://localhost:8080' + '/export';
+  private EXPORT_URL = this.BASE_URL + '/export';
 
   constructor(private http: HttpClient) {}
 
