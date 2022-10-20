@@ -16,6 +16,7 @@ import * as ace from 'ace-builds';
 import '../../../assets/ace/mode-contextmappingdsl.js';
 import '../../../assets/ace/theme-contextmappingdsl.js';
 import '../../../assets/ace/worker-contextmappingdsl.js';
+import { faWindows } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-overview',
@@ -40,6 +41,8 @@ export class OverviewComponent implements AfterViewInit {
   image: SafeUrl;
   expand = false;
 
+  timer: any;
+
   constructor(
     private dataService: DataService,
     private sanitizer: DomSanitizer
@@ -57,7 +60,11 @@ export class OverviewComponent implements AfterViewInit {
 
     aceEditor.on('change', () => {
       this.content = aceEditor.getValue();
-      this.generateDiagram();
+
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.generateDiagram();
+      }, 1000);
     });
   }
 
