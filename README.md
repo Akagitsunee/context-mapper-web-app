@@ -28,7 +28,7 @@ To use the application without docker you need the following tools:
 2. Open localhost in the web browser
 
 ## Getting Started locally
-1. Execute ```start.bat gradle``` or ```start.sh gradle``` depending on the system to start the backend
+1. Execute ```start.bat local``` or ```start.sh local``` depending on the system to start the backend
 2. Run ```npm install``` or ```yarn install``` in the /gui subfolder
 3. Run ```npm start``` or ```yarn start``` to start the gui
 4. Open ```localhost:4200``` in the web browser

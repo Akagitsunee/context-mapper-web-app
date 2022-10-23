@@ -15,6 +15,7 @@ if [[ $1 = "gui"  ]]; then
 fi
 
 if [[ $1 = "local"  ]]; then
-    ./backend/gradlew.bat bootJar -p ./backend
+    chmod +x ./backend/gradlew
+    ./backend/gradlew bootJar -p ./backend
     java -jar ./backend/build/web-1.0.0.jar
 fi
