@@ -1,14 +1,14 @@
 ![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)
 # Context Mapper Web App
 
-Checkout our website [https://contextmapper.org/](https://contextmapper.org/) to get started.
+Checkout the website [https://contextmapper.org/](https://contextmapper.org/) to get started.
 
 ## Features
 * Create Context Maps with the help of the Context Mapper Generator and DSL
   * Write context maps with bounded contexts and their relationships (Strategic DDD)
   * Specify bounded contexts (Tactic DDD): Tactic DSL based on [Sculptor](https://github.com/sculptor/sculptor)
-  * Find examples in our [examples repository](https://github.com/ContextMapper/context-mapper-examples)
-  * Consult our [online documentation](https://contextmapper.org/docs/) to get detailed language documentation, manuals and how to get started.
+  * Find examples in the [examples repository](https://github.com/ContextMapper/context-mapper-examples)
+  * Consult the [online documentation](https://contextmapper.org/docs/) to get detailed language documentation, manuals and how to get started.
 * Export diagrams in *.png, *.svg or *.gv format
 
 ## System Requirements
