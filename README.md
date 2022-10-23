@@ -5,8 +5,7 @@ Checkout the website [https://contextmapper.org/](https://contextmapper.org/) to
 
 ## Features
 * Create Context Maps with the help of the Context Mapper Generator and DSL
-  * Write context maps with bounded contexts and their relationships (Strategic DDD)
-  * Specify bounded contexts (Tactic DDD): Tactic DSL based on [Sculptor](https://github.com/sculptor/sculptor)
+  * Write context maps with bounded contexts and their relationships
   * Find examples in the [examples repository](https://github.com/ContextMapper/context-mapper-examples)
   * Consult the [online documentation](https://contextmapper.org/docs/) to get detailed language documentation, manuals and how to get started.
 * Export diagrams in *.png, *.svg or *.gv format
