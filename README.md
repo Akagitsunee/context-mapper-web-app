@@ -23,8 +23,8 @@ To use the application without docker you need the following tools:
   * Node Version 18.9.0 or higher
 
 ## Getting Started for docker
-1. Execute start.bat or start.sh depending on the system
-2. Open localhost in the web browser
+1. Execute ```start.bat``` or ```start.sh``` depending on the system
+2. Open ```localhost``` (without port) in the web browser
 
 ## Getting Started locally
 1. Execute ```start.bat local``` or ```start.sh local``` depending on the system to start the backend
