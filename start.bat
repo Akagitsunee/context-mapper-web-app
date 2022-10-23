@@ -13,3 +13,8 @@ if %1==web (
 if %1==gui (
     call docker-compose --project-directory docker up gui --build -d
 )
+
+if %1==gradle (
+    call ./backend/gradlew.bat bootJar -p ./backend
+    call java -jar ./backend/build/web-1.0.0.jar
+)

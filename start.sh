@@ -13,3 +13,8 @@ fi
 if [[ $1 = "gui"  ]]; then
     docker-compose --project-directory docker up -d --build gui
 fi
+
+if [[ $1 = "local"  ]]; then
+    ./backend/gradlew.bat bootJar -p ./backend
+    java -jar ./backend/build/web-1.0.0.jar
+fi

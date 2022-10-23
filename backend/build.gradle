@@ -7,11 +7,13 @@ plugins {
     id 'java'
     id "eclipse"
     id "org.xtext.builder" version "${xtextBuilderVersion}"
+    id 'application'
 }
 
 group = 'org.contextmapper'
 version = '1.0.0'
 sourceCompatibility = '17'
+mainClassName = 'org.contextmapper.web.ContextMapperWebApplication'
 
 configurations {
     compileOnly {
